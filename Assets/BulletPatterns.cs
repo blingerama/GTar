@@ -23,119 +23,42 @@ public class BulletPatterns : MonoBehaviour {
 		testCounter++;
 	}
 
+	void spawnBullet(float xDir, float yDir, GameObject bulletType){
+
+		GameObject x = (GameObject)Instantiate (bulletType, gTar.GetComponent<Transform> ().position, Quaternion.identity);
+		BasicBulletMovement y = x.GetComponent<BasicBulletMovement> ();
+		y.xDir = xDir;
+		y.yDir = yDir;
+
+	}
 
 	public void circlePattern1(){
 
-		Transform z = gTar.GetComponent<Transform> ();
-		GameObject x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		BasicBulletMovement y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = -1f;
-		y.yDir = 0f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = 1f;
-		y.yDir = 0f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = -0.951f;
-		y.yDir = -0.309f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = -0.809f;
-		y.yDir = -0.5878f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = -0.5878f;
-		y.yDir = -0.809f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = -0.309f;
-		y.yDir = -0.951f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = 0f;
-		y.yDir = -1f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = 0.309f;
-		y.yDir = -0.951f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = 0.5878f;
-		y.yDir = -0.809f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = 0.809f;
-		y.yDir = -0.5878f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = 0.951f;
-		y.yDir = -0.309f;
-
+		spawnBullet (-1f, 0f, basicBullet);
+		spawnBullet (1f, 0f, basicBullet);
+		spawnBullet (-0.951f, -0.309f, basicBullet);
+		spawnBullet (-0.809f, -0.5878f, basicBullet);
+		spawnBullet (-0.5878f, -0.809f, basicBullet);
+		spawnBullet (-0.309f, -0.951f, basicBullet);
+		spawnBullet (0f, -1f, basicBullet);
+		spawnBullet (0.309f, -0.951f, basicBullet);
+		spawnBullet (0.951f, -0.309f, basicBullet);
+		spawnBullet (0.809f, -0.5878f, basicBullet);
+		spawnBullet (0.5878f, -0.809f, basicBullet);
 	}
 
 	public void circlePattern2(){
 
-		Transform z = gTar.GetComponent<Transform> ();
-		GameObject x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		BasicBulletMovement y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.1564f;
-		y.xDir = -0.9877f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.1564f;
-		y.xDir = 0.9877f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.xDir = -0.1564f;
-		y.yDir = -0.9877f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.9877f;
-		y.xDir = 0.1564f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.454f;
-		y.xDir = -0.891f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.891f;
-		y.xDir = 0.454f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.891f;
-		y.xDir = -0.454f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.454f;
-		y.xDir = 0.891f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.7071f;
-		y.xDir = -0.7071f;
-
-		x = (GameObject)Instantiate(basicBullet, new Vector3(z.position.x, z.position.y), Quaternion.identity);
-		y = x.GetComponent<BasicBulletMovement> ();
-		y.yDir = -0.7071f;
-		y.xDir = 0.7071f;
+		spawnBullet (-0.9877f, -0.1564f, basicBullet);
+		spawnBullet (0.9877f, -0.1564f, basicBullet);
+		spawnBullet (-0.1564f, -0.9877f, basicBullet);
+		spawnBullet (0.1564f, -0.9877f, basicBullet);
+		spawnBullet (-0.454f, -0.891f, basicBullet);
+		spawnBullet (-0.891f, -0.454f, basicBullet);
+		spawnBullet (0.454f, -0.891f, basicBullet);
+		spawnBullet (0.891f, -0.454f, basicBullet);
+		spawnBullet (-0.7071f, -0.7071f, basicBullet);
+		spawnBullet (0.7071f, -0.7071f, basicBullet);
 
 	}
 
