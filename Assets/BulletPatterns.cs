@@ -10,9 +10,9 @@ public class BulletPatterns : MonoBehaviour {
 
 	public GameObject gTar, ship;
 	public GameObject basicBullet;
-	private Transform gPos, sPos;
+	private Vector3 gPos, sPos;
 
-	void Start(){gPos = gTar.GetComponent<Transform>(); sPos = ship.GetComponent<Transform>();}
+	void Start(){gPos = gTar.GetComponent<Transform>().position; }
 
 	void spawnBullet(float xDir, float yDir, GameObject bulletType){
 
@@ -53,16 +53,18 @@ public class BulletPatterns : MonoBehaviour {
 
 	public void TargetedPattern1(){
 
+		sPos = ship.GetComponent<Transform>().position;
 		Vector3 normal = new Vector3 (sPos.x - gPos.x, sPos.y - gPos.y);
 		normal = normal / normal.magnitude;
 		float angle = Mathf.Asin (normal.y);
-		spawnBullet (Mathf.cos (angle + 16), Mathf.sin (angle + 16), basicBullet);
-		spawnBullet (Mathf.cos (angle - 16), Mathf.sin (angle - 16), basicBullet);
+		spawnBullet (Mathf.Cos (angle + 16), -1 * Mathf.Sin (angle + 16), basicBullet);
+		spawnBullet (Mathf.Cos (angle - 16), -1 * Mathf.Sin (angle - 16), basicBullet);
 		spawnBullet (normal.x, normal.y, basicBullet);
 	}
 
 	public void TargetedPattern2(){
 
+		sPos = ship.GetComponent<Transform>().position;
 		Vector3 normal = new Vector3 (sPos.x - gPos.x, sPos.y - gPos.y);
 		normal = normal / normal.magnitude;
 		float angle = Mathf.Asin (normal.y);
@@ -74,19 +76,20 @@ public class BulletPatterns : MonoBehaviour {
 
 	public void TargetedPattern3(){
 
-		float root3Side = Mathf.Sin (60f) * 2f;
-		TargetedPattern3BulletSpawner (sPos.x + 2, sPos.y, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x + root3Side, sPos.y + 1, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x + 1, sPos.y + root3Side, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x, sPos.y + 2, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x - root3Side, sPos.y + 1, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x - 1, sPos.y + root3Side, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x - 2, sPos.y, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x - root3Side, sPos.y - 1, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x - 1, sPos.y - root3Side, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x, sPos.y - 2, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x + root3Side, sPos.y - 1, basicBullet);
-		TargetedPattern3BulletSpawner (sPos.x + 1, sPos.y - root3Side, basicBullet);
+		sPos = ship.GetComponent<Transform>().position;
+		float root3Side = Mathf.Sqrt(3) * 3f;
+		TargetedPattern3BulletSpawner (sPos.x + 6, sPos.y, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x + root3Side, sPos.y + 3, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x + 3, sPos.y + root3Side, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x, sPos.y + 6, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x - root3Side, sPos.y + 3, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x - 3, sPos.y + root3Side, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x - 6, sPos.y, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x - root3Side, sPos.y - 3, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x - 3, sPos.y - root3Side, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x, sPos.y - 6, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x + root3Side, sPos.y - 3, basicBullet);
+		TargetedPattern3BulletSpawner (sPos.x + 3, sPos.y - root3Side, basicBullet);
 	}
 
 	void TargetedPattern3BulletSpawner(float xPos, float yPos, GameObject bulletType){
