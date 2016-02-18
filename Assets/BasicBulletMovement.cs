@@ -7,7 +7,7 @@ using System.Collections;
 public class BasicBulletMovement : MonoBehaviour {
 
 	public float xDir, yDir, movementSpeed;
-	public Transform transform;
+	public Transform transform; 
 
 
 	void Update(){

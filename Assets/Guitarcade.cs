@@ -35,6 +35,7 @@ public class Guitarcade : MonoBehaviour {
 			break;
 		case 26: case 38: case 50: case 62: case 74: case 86: case 98:
 			label.text = "" + MIDI + ": D";
+				patternList.SplitterPattern1();
 			break;
 		case 27: case 39: case 51: case 63: case 75: case 87: case 99:
 			label.text = "" + MIDI + ": Eb/D#";

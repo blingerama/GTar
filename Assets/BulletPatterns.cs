@@ -9,14 +9,31 @@ public class BulletPatterns : MonoBehaviour {
 
 
 	public GameObject gTar, ship;
-	public GameObject basicBullet;
+	public GameObject basicBullet, splitBullet;
 	private Vector3 gPos, sPos;
 
 	void Start(){gPos = gTar.GetComponent<Transform>().position; }
 
+	public void spawnBullet(float xDir, float yDir, GameObject bulletType, Vector3 spawn){
+
+		GameObject x = (GameObject)Instantiate (bulletType, spawn, Quaternion.identity);
+		BasicBulletMovement y = x.GetComponent<BasicBulletMovement> ();
+		y.xDir = xDir;
+		y.yDir = yDir;
+	}
+
+	public void spawnSplitterBullet(float xDir, float yDir, GameObject bulletType, Vector3 spawn){
+
+		GameObject x = (GameObject)Instantiate (bulletType, spawn, Quaternion.identity);
+		SplitBulletMovement y = x.GetComponent<SplitBulletMovement> ();
+		y.xDir = xDir;
+		y.yDir = yDir;
+
+	}
+
 	void spawnBullet(float xDir, float yDir, GameObject bulletType){
 
-		GameObject x = (GameObject)Instantiate (bulletType, gTar.GetComponent<Transform> ().position, Quaternion.identity);
+		GameObject x = (GameObject)Instantiate (bulletType, gPos, Quaternion.identity);
 		BasicBulletMovement y = x.GetComponent<BasicBulletMovement> ();
 		y.xDir = xDir;
 		y.yDir = yDir;
@@ -90,6 +107,22 @@ public class BulletPatterns : MonoBehaviour {
 		TargetedPattern3BulletSpawner (sPos.x, sPos.y - 6, basicBullet);
 		TargetedPattern3BulletSpawner (sPos.x + root3Side, sPos.y - 3, basicBullet);
 		TargetedPattern3BulletSpawner (sPos.x + 3, sPos.y - root3Side, basicBullet);
+	}
+
+	public void SplitterPattern1(){
+
+		spawnSplitterBullet (-1f, 0f, splitBullet, gPos);
+		spawnSplitterBullet (1f, 0f, splitBullet, gPos);
+		spawnSplitterBullet (-0.951f, -0.309f, splitBullet, gPos);
+		spawnSplitterBullet (-0.809f, -0.5878f, splitBullet, gPos);
+		spawnSplitterBullet (-0.5878f, -0.809f, splitBullet, gPos);
+		spawnSplitterBullet (-0.309f, -0.951f, splitBullet, gPos);
+		spawnSplitterBullet (0f, -1f, splitBullet, gPos);
+		spawnSplitterBullet (0.309f, -0.951f, splitBullet, gPos);
+		spawnSplitterBullet (0.951f, -0.309f, splitBullet, gPos);
+		spawnSplitterBullet (0.809f, -0.5878f, splitBullet, gPos);
+		spawnSplitterBullet (0.5878f, -0.809f, splitBullet, gPos);
+
 	}
 
 	void TargetedPattern3BulletSpawner(float xPos, float yPos, GameObject bulletType){
