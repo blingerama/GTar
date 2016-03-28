@@ -26,6 +26,7 @@ public class BulletPatterns : MonoBehaviour {
 
 		GameObject x = (GameObject)Instantiate (bulletType, spawn, Quaternion.identity);
 		SplitBulletMovement y = x.GetComponent<SplitBulletMovement> ();
+		y.isActivated = true;
 		y.xDir = xDir;
 		y.yDir = yDir;
 

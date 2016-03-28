@@ -5,9 +5,10 @@ public class SplitBulletMovement : MonoBehaviour {
 
 	public float xDir, yDir, movementSpeed;
 	public GameObject boolet;
-	private int splitTimer = 0;
+	private float splitTimer = 0;
 	private Transform transform;
 	public BulletPatterns bulletSpawner;
+	public bool isActivated;
 
 	// Use this for initialization
 	void Start () {
@@ -17,35 +18,39 @@ public class SplitBulletMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-		transform.Translate(new Vector3(xDir, yDir) * movementSpeed);		
+	void Update ()
+	{
+		if (isActivated) {
+			transform.Translate (new Vector3 (xDir, yDir) * movementSpeed * Time.deltaTime);		
 
-		if(transform.position.x <  -10 || transform.position.x > 10 || transform.position.y < -10 || transform.position.y > 10)
-			Destroy(GetComponent<GameObject>());
+			if (transform.position.x < -10 || transform.position.x > 10 || transform.position.y < -10 || transform.position.y > 10)
+				Destroy (gameObject);
 
-		if (splitTimer == 40) {
+			if (splitTimer >= 1.5f) {
 
-			if (boolet.tag.Equals ("BasicBullet")) {
+				if (boolet.tag.Equals ("BasicBullet")) {
+					//isActivated = false;
+					bulletSpawner.spawnBullet (xDir, yDir, boolet, transform.position);
+					bulletSpawner.spawnBullet (-1 * xDir, yDir, boolet, transform.position);
+					bulletSpawner.spawnBullet (-1 * xDir, -1 * yDir, boolet, transform.position);
+					bulletSpawner.spawnBullet (xDir, -1 * yDir, boolet, transform.position);
+					//Destroy(boolet);
+					Destroy (gameObject);
 
-				bulletSpawner.spawnBullet (xDir, yDir, boolet, transform.position);
-				bulletSpawner.spawnBullet (-1 * xDir, yDir, boolet, transform.position);
-				bulletSpawner.spawnBullet (-1 * xDir, -1 * yDir, boolet, transform.position);
-				bulletSpawner.spawnBullet (xDir, -1 * yDir, boolet, transform.position);
-				Destroy (GetComponent<GameObject> ());
+				} else {
+					bulletSpawner.spawnSplitterBullet (xDir, yDir, boolet, transform.position);
+					bulletSpawner.spawnSplitterBullet (-1 * xDir, yDir, boolet, transform.position);
+					bulletSpawner.spawnSplitterBullet (-1 * xDir, -1 * yDir, boolet, transform.position);
+					bulletSpawner.spawnSplitterBullet (xDir, -1 * yDir, boolet, transform.position);
+					Destroy (gameObject);
+				}
 
 			}
 
-			bulletSpawner.spawnSplitterBullet (xDir, yDir, boolet, transform.position);
-			bulletSpawner.spawnSplitterBullet (-1 * xDir, yDir, boolet, transform.position);
-			bulletSpawner.spawnSplitterBullet (-1 * xDir, -1 * yDir, boolet, transform.position);
-			bulletSpawner.spawnSplitterBullet (xDir, -1 * yDir, boolet, transform.position);
-			Destroy (GetComponent<GameObject> ());
-
+			//if(Random.Range(0, 2) == 1)
+			splitTimer += Time.deltaTime;
 		}
-
-		if(Random.Range(0, 2) == 1)
-			splitTimer++;
 
 	}
 }
+
