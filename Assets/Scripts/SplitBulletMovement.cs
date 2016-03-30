@@ -5,7 +5,7 @@ public class SplitBulletMovement : MonoBehaviour {
 
 	public float xDir, yDir, movementSpeed;
 	public GameObject boolet;
-	private float splitTimer = 0;
+	//private float splitTimer = 0;
 	private Transform transform;
 	public BulletPatterns bulletSpawner;
 	public bool isActivated;
@@ -26,7 +26,7 @@ public class SplitBulletMovement : MonoBehaviour {
 			if (transform.position.x < -10 || transform.position.x > 10 || transform.position.y < -10 || transform.position.y > 10)
 				Destroy (gameObject);
 
-			if (splitTimer >= 1.5f) {
+			if (Random.Range(0, 200) == 1/*splitTimer >= 1.2f*/) {
 
 				if (boolet.tag.Equals ("BasicBullet")) {
 					//isActivated = false;
@@ -48,7 +48,7 @@ public class SplitBulletMovement : MonoBehaviour {
 			}
 
 			//if(Random.Range(0, 2) == 1)
-			splitTimer += Time.deltaTime;
+			//splitTimer += (Time.deltaTime /* *Random.Range(5, 20)*/);
 		}
 
 	}
